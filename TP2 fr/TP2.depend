@@ -1,0 +1,32 @@
+# depslib dependency file v1.0
+1538269520 source:c:\users\user\desktop\tp2\main.c
+	<stdio.h>
+	<stdlib.h>
+	"ArrayEmployees.h"
+
+1538264930 c:\users\user\desktop\tp2\bibliotp2.h
+
+1538269558 source:c:\users\user\desktop\tp2\arrayemployees.c
+	"ArrayEmployees.h"
+
+1538269602 c:\users\user\desktop\tp2\arrayemployees.h
+	<stdio.h>
+	<stdlib.h>
+
+1538341098 source:c:\users\user\desktop\tp2 for real\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ArrayEmployees.h"
+
+1538358042 c:\users\user\desktop\tp2 for real\arrayemployees.h
+
+1538346399 source:c:\users\user\desktop\tp2 for real\arrayemployees.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ArrayEmployees.h"
+
+1538330400 c:\users\user\desktop\tp2 for real\arrayemployees.c
+	"ArrayEmployees.h"
+
