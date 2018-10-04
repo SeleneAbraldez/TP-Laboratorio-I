@@ -210,11 +210,11 @@ int sortEmployees(eEmployee* listi, int len, int order){
         }else if(order == 2){
             for(int i =0 ; i<len-1 ; i ++){
                 for(int j= i+1 ; j<len; j++){
-                    if(strcmp(listi[j].lastName,listi[i].lastName)>0){
+                    if(strcmp(listi[j].lastName,listi[i].lastName)>0 && listi[j].sector<listi[i].sector && listi[j].isEmpty==0 && listi[i].isEmpty==0){
                         auxEmployees = listi[i];
                         listi[i] = listi[j];
                         listi[j] = auxEmployees;
-                    }else if(strcmp(listi[j].lastName,listi[i].lastName) ==0 && listi[j].sector>listi[i].sector){
+                    }else if(strcmp(listi[j].lastName,listi[i].lastName) ==0 && listi[j].sector>listi[i].sector && listi[j].sector<listi[i].sector && listi[j].isEmpty==0 && listi[i].isEmpty==0){
                         auxEmployees = listi[i];
                         listi[i] = listi[j];
                         listi[j] = auxEmployees;
