@@ -2,10 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include "ArrayEmployees.h"
+#include "utn.h"
 
-//if(listi!=NULL && len <0){
-
-int menu(){
+int menu(void){
     int option;
     system("cls");
     printf("---Menu de Opciones---\n\n");
@@ -14,6 +13,7 @@ int menu(){
     printf("3- Baja\n");
     printf("4- Informar\n");
     printf("5- Salir\n\n");
+    printf("0- Hardcodeo\n\n");
     printf("Ingrese opcion: ");
     fflush(stdin);
     scanf("%d", &option);
@@ -31,7 +31,6 @@ int initEmployees(eEmployee* listi, int len){
     return ret;
 }
 
-
 int freeSpace(eEmployee* listi, int len){
     int index = -1;
     for(int i=0; i< len; i++){
@@ -43,139 +42,139 @@ int freeSpace(eEmployee* listi, int len){
     return index;
 }
 
+void printSector(void){
+    printf("\n-----Sectores-----\n");
+    printf("  1 Sistemas\n");
+    printf("  2 Ventas\n");
+    printf("  3 Mantenimiento\n");
+    printf("  4 Atencion\n");
+    printf("  5 RRHH\n");
+}
+
 int findEmployeeById(eEmployee* listi, int len, int id){
+    int ret;
     for(int i=0; i < len; i++){
         if(listi[i].id == id && listi[i].isEmpty == 0){
-            return i;
-            break;
+            ret = i;
         }
     }
-    return -1;
+    return ret;
 }
 
 int printEmployee(eEmployee* listi, int index){
-    printf("%d\t%s\t%s\t\t%.2f\t\t%d\n\n", listi[index].id, listi[index].name, listi[index].lastName, listi[index].salary, listi[index].sector);
+    printf("%d\t%s\t%s\t\t%.2f\t%d\n\n", listi[index].id, listi[index].name, listi[index].lastName, listi[index].salary, listi[index].sector);
     return 0;
 }
 
 int addEmployee(eEmployee* listi, int len, int id, char name[],char lastName[], float salary, int sector){
     eEmployee emplAdd;
     int index = freeSpace(listi, len);
-    int idAux = index + 1;
+    int ret = -1;
     if(index == -1){
         printf("!! - No hay lugar disponible. \n\n");
     } else {
-        emplAdd.id = idAux;
-        printf("-- Empleadx ID %d --\n", idAux);
-        printf("Ingrese nombre: ");
-        fflush(stdin);
-        gets(emplAdd.name);
+        if (listi != NULL && len > 0){
+            emplAdd.id = id;
+            strcpy(emplAdd.name, name);
+            strcpy(emplAdd.lastName, lastName);
+            emplAdd.salary = salary;
+            emplAdd.sector = sector;
 
-        printf("Ingrese apellido: ");
-        fflush(stdin);
-        gets(emplAdd.lastName);
-
-        printf("Ingrese salario: ");
-        scanf("%f", &emplAdd.salary);
-
-        printf("Ingrese sector: ");
-        scanf("%d", &emplAdd.sector);
-
-        emplAdd.isEmpty = 0;
-        listi[index] = emplAdd;
-
+            emplAdd.isEmpty = 0;
+            listi[index] = emplAdd;
+            ret = 0;
+        }
     }
-    return -1;
+    return ret;
 }
 
 int editEmployeeById(eEmployee* listi, int len, int id){
-    int idAux;
     int index;
     int subMenu;
     eEmployee emplAux;
+    int ret = -1;
+
+    index = findEmployeeById(listi, len, id);
     char cont = 's';
 
-    printf("Ingrese ID: ");
-    scanf("%d", &idAux);
-    index = findEmployeeById(listi, len, idAux);
-
     if(index != -1){
-        do{
-            printf("ID\tNombre\tApellido\tSalario\t\tSector\n");
-            printEmployee(listi, index);
-            printf("Que desea modificar?\n");
-            printf("\t1- Nombre\n");
-            printf("\t2- Apellido\n");
-            printf("\t3- Salario\n");
-            printf("\t4- Sector\n");
-            scanf("%d", &subMenu);
-            switch(subMenu){
-                case 1:
-                    printf("Ingrese nuevo nombre: \n");
-                    fflush(stdin);
-                    gets(emplAux.name);
-                    strcpy(listi[index].name, emplAux.name);
-                    printf("Se ha modificado el dato con exito.\n\n");
-                    break;
-                case 2:
-                    printf("Ingrese nuevo apellido: \n");
-                    fflush(stdin);
-                    gets(emplAux.lastName);
-                    strcpy(listi[index].lastName, emplAux.lastName);
-                    printf("Se ha modificado el dato con exito.\n\n");
-                    break;
-                case 3:
-                    printf("\nIngrese nuevo salario:");
-                    scanf("%f",&emplAux.salary);
-                    listi[index].salary=emplAux.salary;
-                    printf("Se ha modificado el dato con exito.\n\n");
-                    break;
-                case 4:
-                    printf("\nIngrese nuevo sector:");
-                    scanf("%d",&emplAux.sector);
-                    listi[index].sector= emplAux.sector;
-                    printf("Se ha modificado el dato con exito.\n\n");
-                    break;
-                default :
-                    printf("Error, ingrese numero entre 1 y 4.\n");
-                    break;
-            }
-            printf("Desea editar otro dato? Presione 's' para aceptar, aprete cualquier otra tecla para salir.\n");
-            fflush(stdin);
-            scanf("%c", &cont);
-        }while (cont == 's');
-        printf("Saliendo al Menu...\n");
-        return 0;
+        if (listi != NULL && len > 0){
+            do{
+                printf("ID\tNombre\tApellido\tSalario\t\tSector\n");
+                printEmployee(listi, index);
+                printf("Que desea modificar?\n");
+                printf("\t1- Nombre\n");
+                printf("\t2- Apellido\n");
+                printf("\t3- Salario\n");
+                printf("\t4- Sector\n");
+                printf("\t5- Salir\n");
+                scanf("%d", &subMenu);
+                switch(subMenu){
+                    case 1:
+                        getValidString("Ingrese nombre: ", "Valor no valido.", emplAux.name);
+                        strcpy(listi[index].name, emplAux.name);
+                        printf("Se ha modificado el dato con exito.\n\n");
+                        break;
+                    case 2:
+                        getValidString("Ingrese apellido: ", "Valor no valido.", emplAux.lastName);
+                        strcpy(listi[index].lastName, emplAux.lastName);
+                        printf("Se ha modificado el dato con exito.\n\n");
+                        break;
+                    case 3:
+                        emplAux.salary =getValidFloat("Ingrese salario: ","Valor no valido", 10000, 1000000);
+                        listi[index].salary=emplAux.salary;
+                        printf("Se ha modificado el dato con exito.\n\n");
+                        break;
+                    case 4:
+                        printSector();
+                        emplAux.sector =getValidInt("Ingrese sector: ","Valor no valido", 0, 5);
+                        listi[index].sector= emplAux.sector;
+                        printf("Se ha modificado el dato con exito.\n\n");
+                        break;
+                    case 5:
+                        break;
+                    default :
+                        printf("Error, ingrese numero entre 1 y 5.\n");
+                        break;
+                }
+                printf("Desea editar otro dato? Presione 's' para aceptar, aprete cualquier otra tecla para salir.\n");
+                fflush(stdin);
+                scanf("%c", &cont);
+            }while (cont == 's');
+            printf("Saliendo al Menu...\n");
+            ret = 0;
+        }
     } else {
         printf("!! - No se ha encontrado empleadx con esa ID. \n");
     }
-    return -1;
+    return ret;
 }
 
 int removeEmployee(eEmployee* listi, int len, int id){
-    int idAux;
     int index;
     char del;
+    int ret = -1;
 
-    printf("Ingrese ID: ");
-    scanf("%d", &idAux);
-    index = findEmployeeById(listi, len, idAux);
+    index = findEmployeeById(listi, len, id);
     if(index != -1){
-        printf("ID\tNombre\tApellido\tSalario\t\tSector\n");
-        printEmployee(listi, index);
-        printf("Confirmar eliminado? 's' para confirmar: ");
-        fflush(stdin);
-        scanf("%c", &del);
-        if(del != 's'){
-            printf("Eliminado cancelado\n\n");
-        }else {
-            listi[index].isEmpty = 1;
-            printf("Se ha eliminado empleadx\n\n");
+        if (listi != NULL && len > 0){
+            printf("ID\tNombre\tApellido\tSalario\t\tSector\n");
+            printEmployee(listi, index);
+            printf("Confirmar eliminado? 's' para confirmar: ");
+            fflush(stdin);
+            scanf("%c", &del);
+            if(del != 's'){
+                printf("Eliminado cancelado\n\n");
+            }else {
+                listi[index].isEmpty = 1;
+                printf("Se ha eliminado empleadx\n\n");
+            }
+            ret = 0;
         }
     }else {
         printf("!! - No se ha encontrado empleadx con esa ID.\n");
     }
-    return -1;
+    return ret;
 }
 
 int printEmployees(eEmployee* listi, int len){
@@ -189,49 +188,53 @@ int printEmployees(eEmployee* listi, int len){
 }
 
 int sortEmployees(eEmployee* listi, int len, int order){
+    int ret = -1;
     eEmployee auxEmployees;
-    if(order == 1){
-        for(int i =0 ; i<len-1 ; i ++){
-            for(int j= i+1 ; j<len; j++){
-                if(strcmp(listi[j].lastName,listi[i].lastName)<0){
-                    auxEmployees = listi[i];
-                    listi[i] = listi[j];
-                    listi[j] = auxEmployees;
-                }else if(strcmp(listi[j].lastName,listi[i].lastName) ==0 && listi[j].sector<listi[i].sector){
-                    auxEmployees = listi[i];
-                    listi[i] = listi[j];
-                    listi[j] = auxEmployees;
+    if (listi != NULL && len > 0){
+        if(order == 1){
+            for(int i =0 ; i<len-1 ; i ++){
+                for(int j= i+1 ; j<len; j++){
+                    if(strcmp(listi[j].lastName,listi[i].lastName)<0 && listi[j].isEmpty==0 && listi[i].isEmpty==0){
+                        auxEmployees = listi[i];
+                        listi[i] = listi[j];
+                        listi[j] = auxEmployees;
+                    }else if(strcmp(listi[j].lastName,listi[i].lastName) ==0 && listi[j].sector<listi[i].sector && listi[j].isEmpty==0 && listi[i].isEmpty==0){
+                        auxEmployees = listi[i];
+                        listi[i] = listi[j];
+                        listi[j] = auxEmployees;
+                    }
                 }
             }
-        }
-        printf("\t1--Listado de empleadxs Apellido y Sector - Ascendente\n\n");
-        printEmployees(listi, len);
-    }else if(order == 2){
-        for(int i =0 ; i<len-1 ; i ++){
-            for(int j= i+1 ; j<len; j++){
-                if(strcmp(listi[j].lastName,listi[i].lastName)>0){
-                    auxEmployees = listi[i];
-                    listi[i] = listi[j];
-                    listi[j] = auxEmployees;
-                }else if(strcmp(listi[j].lastName,listi[i].lastName) ==0 && listi[j].sector>listi[i].sector){
-                    auxEmployees = listi[i];
-                    listi[i] = listi[j];
-                    listi[j] = auxEmployees;
+            printf("\t1--Listado de empleadxs Apellido y Sector - Ascendente\n\n");
+            printEmployees(listi, len);
+        }else if(order == 2){
+            for(int i =0 ; i<len-1 ; i ++){
+                for(int j= i+1 ; j<len; j++){
+                    if(strcmp(listi[j].lastName,listi[i].lastName)>0){
+                        auxEmployees = listi[i];
+                        listi[i] = listi[j];
+                        listi[j] = auxEmployees;
+                    }else if(strcmp(listi[j].lastName,listi[i].lastName) ==0 && listi[j].sector>listi[i].sector){
+                        auxEmployees = listi[i];
+                        listi[i] = listi[j];
+                        listi[j] = auxEmployees;
+                    }
                 }
             }
+            printf("\t1--Listado de empleadxs Apellido y Sector - Descendente\n\n");
+            printEmployees(listi, len);
+        } else {
+                printf("Opcion no valida\n");
         }
-        printf("\t1--Listado de empleadxs Apellido y Sector - Descendente\n\n");
-        printEmployees(listi, len);
-    } else {
-            printf("Opcion no valida\n");
+        ret = 0;
     }
-    return 0;
+    return ret;
 }
 
 int averageSalary(eEmployee* listi, int len){
     float empl=0;
     float salaryTotal=0;
-    float average;
+    float average = -1;
     for (int i = 0; i<len; i++){
         if(listi[i].isEmpty==0){
             empl++;
@@ -276,7 +279,4 @@ void hardcodeo(eEmployee* listi){
         listi[i] = y[i];
     }
     printf("\tHardcodeo hecho!\n");
-    system("pause");
 }
-
-

@@ -1,5 +1,5 @@
-#ifndef ARRAYEMPLOYEE_H_INCLUDED
-#define ARRAYEMPLOYEE_H_INCLUDED
+#ifndef ARRAYEMPLOYEES_H_INCLUDED
+#define ARRAYEMPLOYEES_H_INCLUDED
 
 typedef struct{
     int id;
@@ -15,7 +15,7 @@ typedef struct{
  * \return Option
  *
  */
-int menu();
+int menu(void);
 
 /** \brief To indicate that all position in the array are empty,
 *           this function put the flag (isEmpty) in TRUE in all
@@ -27,6 +27,7 @@ int menu();
 */
 int initEmployees(eEmployee* listi, int len);
 
+
 /** \brief To get what index is free
  * \param list employee*
  * \param int len
@@ -34,6 +35,10 @@ int initEmployees(eEmployee* listi, int len);
  *
  */
 int freeSpace(eEmployee* listi, int len);
+
+/** \brief  Prints sectors
+ */
+void printSector(void); ///esto es con la interpretacion de que sector NO es una estructura, debido a que sector en eEmpleyee no es idSector
 
 /** \brief Prints a single employee
  * \param list employee*
@@ -136,3 +141,4 @@ int aboveAverageSalary(eEmployee* listi, int len);
 void hardcodeo(eEmployee* listi);
 
 #endif // ARRAYEMPLOYEE_H_INCLUDED
+

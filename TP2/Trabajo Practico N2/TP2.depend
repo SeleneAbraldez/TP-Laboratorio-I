@@ -1,46 +1,61 @@
 # depslib dependency file v1.0
-1538269520 source:c:\users\user\desktop\tp2\main.c
+1538593045 source:c:\users\user\desktop\eutanasia legal,\tp2\arrayempleyees.c
 	<stdio.h>
 	<stdlib.h>
-	"ArrayEmployees.h"
+	<string.h>
+	"ArrayEmpleyees.h"
 
-1538264930 c:\users\user\desktop\tp2\bibliotp2.h
+1538592893 c:\users\user\desktop\eutanasia legal,\tp2\arrayempleyees.h
 
-1538269558 source:c:\users\user\desktop\tp2\arrayemployees.c
-	"ArrayEmployees.h"
-
-1538269602 c:\users\user\desktop\tp2\arrayemployees.h
-	<stdio.h>
-	<stdlib.h>
-
-1538341098 source:c:\users\user\desktop\tp2 for real\main.c
+1538594728 source:c:\users\user\desktop\eutanasia legal,\tp2\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"ArrayEmployees.h"
 
-1538358042 c:\users\user\desktop\tp2 for real\arrayemployees.h
-
-1538346399 source:c:\users\user\desktop\tp2 for real\arrayemployees.c
+1538594720 source:c:\users\user\desktop\eutanasia legal,\tp2\arrayemployees.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"ArrayEmployees.h"
 
-1538330400 c:\users\user\desktop\tp2 for real\arrayemployees.c
-	"ArrayEmployees.h"
+1538594738 c:\users\user\desktop\eutanasia legal,\tp2\arrayemployees.h
 
-1538511149 source:c:\users\user\desktop\tp2 fr\arrayemployees.c
+1538606146 source:c:\users\user\desktop\eutanasia legal, - copia\tp2\arrayemployees.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"ArrayEmployees.h"
 
-1538445886 c:\users\user\desktop\tp2 fr\arrayemployees.h
+1538602149 c:\users\user\desktop\eutanasia legal, - copia\tp2\arrayemployees.h
 
-1538511938 source:c:\users\user\desktop\tp2 fr\main.c
+1538606361 source:c:\users\user\desktop\eutanasia legal, - copia\tp2\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"ArrayEmployees.h"
+
+1538613184 source:c:\users\user\desktop\eutanasia legal, segura y gratuita\tp2\utn.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<string.h>
+
+1538613184 source:c:\users\user\desktop\eutanasia legal, segura y gratuita\tp2\arrayemployees.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ArrayEmployees.h"
+	"utn.h"
+
+1538613386 c:\users\user\desktop\eutanasia legal, segura y gratuita\tp2\arrayemployees.h
+
+1538607922 c:\users\user\desktop\eutanasia legal, segura y gratuita\tp2\utn.h
+
+1538613495 source:c:\users\user\desktop\eutanasia legal, segura y gratuita\tp2\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ArrayEmployees.h"
+	"utn.h"
 
