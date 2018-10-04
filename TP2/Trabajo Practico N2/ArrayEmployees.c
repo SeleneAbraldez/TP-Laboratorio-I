@@ -62,7 +62,7 @@ int findEmployeeById(eEmployee* listi, int len, int id){
 }
 
 int printEmployee(eEmployee* listi, int index){
-    printf("%d\t%s\t%s\t\t%.2f\t%d\n\n", listi[index].id, listi[index].name, listi[index].lastName, listi[index].salary, listi[index].sector);
+    printf("-ID: %d\nNombre: %s\nApellido: %s\nSalario: %.2f\nSector: %d\n\n", listi[index].id, listi[index].name, listi[index].lastName, listi[index].salary, listi[index].sector);
     return 0;
 }
 
@@ -178,7 +178,6 @@ int removeEmployee(eEmployee* listi, int len, int id){
 }
 
 int printEmployees(eEmployee* listi, int len){
-    printf("ID\tNombre\tApellido\tSalario\t\tSector\n\n");
     for(int i=0; i< len; i++){
         if(listi[i].isEmpty == 0){
             printEmployee(listi, i);
